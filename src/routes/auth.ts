@@ -1,10 +1,12 @@
+// routes/auth.ts
 import { Router, Request, Response, NextFunction } from 'express';
 import prisma from '../lib/prisma';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 
 const router = Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'secret';
+const JWT_EXPIRATION = process.env.JWT_EXPIRATION || '1h'; // 👈 อัพเดตตรงนี้
 
 // User Register
 router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
@@ -39,7 +41,9 @@ router.post('/login', async (req: Request, res: Response, next: NextFunction) =>
       throw new Error('Invalid username or password');
     }
 
-    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+      expiresIn: JWT_EXPIRATION as SignOptions['expiresIn'],
+    });
 
     res.json({ token });
   } catch (error) {
