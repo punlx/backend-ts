@@ -14,7 +14,7 @@ const app: Express = express();
 const port = process.env.PORT || 4000;
 
 const corsOptions = {
-  origin: 'http://localhost:3000', // อนุญาตให้แค่ Frontend ของคุณเรียก API ได้
+  origin: ['http://localhost:3000', 'https://todo-frontend-ascs.onrender.com'],
   optionsSuccessStatus: 200,
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Content-Type, Authorization',
