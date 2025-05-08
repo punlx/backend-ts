@@ -1,0 +1,19 @@
+services:
+  backend:
+    build: .
+    ports:
+      - '4000:4000'
+    environment:
+      DATABASE_URL: postgresql://postgres:1234@db:5432/todos_db?schema=public
+    depends_on:
+      - db
+    command: sh -c "yarn prisma migrate deploy && yarn start"
+
+  db:
+    image: postgres:15
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: todos_db
