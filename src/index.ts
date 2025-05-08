@@ -42,15 +42,3 @@ app.use('/auth', authRoutes);
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
-
-// mongodb
-// import mongoose from 'mongoose';
-
-// mongoose
-//   .connect('mongodb://localhost:27017/todos_db')
-//   .then(() => console.log('🚀 MongoDB connected!'))
-//   .catch((err) => console.error('MongoDB connection error:', err));
-
-// import todosMongoRoutes from './routes/todosMongo';
-
-// app.use('/todos-mongo', todosMongoRoutes);
