@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: todo-backend-api
+    env: node
+    region: oregon
+    buildCommand: |
+      yarn install
+      yarn prisma generate
+      yarn build
+    startCommand: yarn start
+    envVars:
+      - key: DATABASE_URL
+        value: 'postgresql://postgres:1234@localhost:5432/todos_db?schema=public'
+      - key: JWT_SECRET
+        value: 'your_secure_jwt_secret'
+      - key: PORT
+        value: 4000
