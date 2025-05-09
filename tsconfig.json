@@ -9,6 +9,9 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
+  },
+  "exclude": ["node_modules", "dist", "__mocks__"],
+  "include": ["src/**/*", "__tests__/**/*"]
 }
